@@ -1,7 +1,7 @@
-# **Cohatch Assignment - AI-Powered Co-Founder Matching API**  
+# **AI-Powered Co-Founder Matching API**  
 
 ## **Overview**  
-Co-Founder Matching API is an AI-powered co-founder matching API that leverages **FastAPI** and **NLP-based similarity scoring** to help entrepreneurs find the best co-founders based on their profiles, skills, and industry preferences.  
+An AI-powered co-founder matching API that leverages **FastAPI** and **NLP-based similarity scoring** to help entrepreneurs find the best co-founders based on their profiles, skills, and industry preferences.  
 
 ## **Features**  
 - **AI-driven Matching:** Uses `sentence-transformers` for NLP-based similarity scoring.  
@@ -18,7 +18,7 @@ Co-Founder Matching API is an AI-powered co-founder matching API that leverages 
 - **Containerization:** Docker  
 
 ## **Machine Learning Model**  
-Cohatch uses the **"all-mpnet-base-v2"** model from **Sentence Transformers**.  
+FounderMatch AI uses the **"all-mpnet-base-v2"** model from **Sentence Transformers**.  
 
 ### **Model Details**  
 - **Name:** `all-mpnet-base-v2`  
@@ -32,8 +32,8 @@ Cohatch uses the **"all-mpnet-base-v2"** model from **Sentence Transformers**.
 
 ### **1. Clone the Repository**  
 ```bash
-git clone https://github.com/sincerelyyyash/cohatch-assignment.git
-cd cohatch-assignment
+git clone https://github.com/sincerelyyyash/founder-match-ai.git
+cd founder-match-ai
 ```
 
 ### **2. Create & Activate Virtual Environment (Optional)**
@@ -77,12 +77,12 @@ Send a `POST` request to `/match_cofounders/` with a user profile:
 ### **6. Docker Setup**  
 #### **Build the Docker Image**  
 ```bash
-docker build -t cohatch .
+docker build -t founder-match-ai .
 ```
 
 #### **Run the Docker Container**  
 ```bash
-docker run -p 8000:8000 cohatch
+docker run -p 8000:8000 founder-match-ai
 ```
 
 #### **Stop & Remove Docker Containers**  
@@ -90,7 +90,7 @@ docker run -p 8000:8000 cohatch
 docker ps  # List running containers
 docker stop <container_id>  # Stop a container
 docker rm <container_id>  # Remove a container
-docker rmi cohatch  # Remove the Docker image
+docker rmi founder-match-ai  # Remove the Docker image
 ```
 
 ## **Contributing**  
@@ -101,4 +101,4 @@ docker rmi cohatch  # Remove the Docker image
 5. Create a Pull Request.  
 
 ## **License**  
-This project is licensed under the **MIT License**.
+This project is licensed under the **MIT License**.  

@@ -1,98 +1,104 @@
-# Cohatch Assignment - Co-Founder Matching API  
+# **Cohatch Assignment - AI-Powered Co-Founder Matching API**  
 
-Co-Founder Matching API is a FastAPI-based platform designed to help entrepreneurs find potential co-founders based on skills, industry, and experience using machine learning and NLP techniques.  
+## **Overview**  
+Co-Founder Matching API is an AI-powered co-founder matching API that leverages **FastAPI** and **NLP-based similarity scoring** to help entrepreneurs find the best co-founders based on their profiles, skills, and industry preferences.  
 
-## Features  
-- FastAPI backend for profile matching  
-- Cosine similarity with Sentence Transformers for recommendation  
-- CSV-based profile processing  
-- Docker support for easy deployment  
+## **Features**  
+- **AI-driven Matching:** Uses `sentence-transformers` for NLP-based similarity scoring.  
+- **FastAPI Backend:** Efficient and lightweight API for matching users.  
+- **CSV-based Profile Storage:** Reads and processes LinkedIn-like profiles from a CSV file.  
+- **Skill & Industry Matching:** Compares skills, bio, industry, and location to find the best matches.  
+- **Dockerized Deployment:** Easily deployable with Docker.  
 
-## Installation  
+## **Tech Stack**  
+- **Backend:** FastAPI  
+- **Machine Learning:** Sentence Transformers (`all-mpnet-base-v2`)  
+- **Data Processing:** Pandas, NumPy, Scikit-learn  
+- **Web Server:** Uvicorn  
+- **Containerization:** Docker  
 
-### 1. Clone the Repository  
-```sh
+## **Machine Learning Model**  
+Cohatch uses the **"all-mpnet-base-v2"** model from **Sentence Transformers**.  
+
+### **Model Details**  
+- **Name:** `all-mpnet-base-v2`  
+- **Library:** `sentence-transformers`  
+- **Architecture:** MPNet (Masked and Permuted Pre-training)  
+- **Embedding Size:** 768 dimensions  
+- **Purpose:** Converts textual data (bios, skills, industries) into numerical vectors for **cosine similarity** matching.  
+- **Usage:** The model encodes user profiles and compares them with preprocessed LinkedIn-like profiles to find the best matches.  
+
+## **Setup Instructions**  
+
+### **1. Clone the Repository**  
+```bash
 git clone https://github.com/sincerelyyyash/cohatch-assignment.git
 cd cohatch-assignment
 ```
 
-### 2. Create a Virtual Environment (Optional but Recommended)  
-```sh
-python3 -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+### **2. Create & Activate Virtual Environment (Optional)**
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
-### 3. Install Dependencies  
-```sh
-pip install --no-cache-dir -r requirements.txt
+### **3. Install Dependencies**  
+```bash
+pip install -r requirements.txt
 ```
 
-## Running the API  
-
-```sh
+### **4. Run the API Server**  
+```bash
 uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-API will be available at: [http://127.0.0.1:8000](http://127.0.0.1:8000)  
+### **5. Test API**  
+Once the server is running, test the API using **Postman** or **cURL**:  
 
-### API Endpoints  
-
-#### Match Co-Founders  
-**POST** `/match_cofounders/`  
-**Request Body:**  
-```json
-{
-    "name": "John Doe",
-    "bio": "Experienced AI developer looking for a startup in healthcare.",
-    "skills": [{"name": "Python"}, {"name": "Machine Learning"}],
-    "industry": "Healthcare",
-    "experience": 5,
-    "education": "MSc AI",
-    "location": "New York"
-}
+#### **Check API Status**  
+```bash
+curl http://127.0.0.1:8000/
 ```
-**Response:**  
+
+#### **Match Co-Founders**  
+Send a `POST` request to `/match_cofounders/` with a user profile:
 ```json
 {
-    "matches": [
-        {
-            "name": "Jane Smith",
-            "bio": "AI researcher passionate about healthcare.",
-            "skills": [{"name": "Deep Learning"}],
-            "industry": "Healthcare",
-            "similarity_score": 0.87
-        }
-    ]
+  "name": "John Doe",
+  "bio": "Experienced software engineer looking to build an AI startup.",
+  "skills": [{"name": "Machine Learning"}, {"name": "Python"}],
+  "industry": "Technology",
+  "experience": 5,
+  "education": "MIT",
+  "location": "San Francisco"
 }
 ```
 
-#### Debug Profiles  
-**GET** `/debug/profiles/`  
-Returns the number of loaded profiles and sample data.
-
-## Running with Docker  
-
-### 1. Build Docker Image  
-```sh
-docker build -t cohatch-api .
+### **6. Docker Setup**  
+#### **Build the Docker Image**  
+```bash
+docker build -t cohatch .
 ```
 
-### 2. Run Container  
-```sh
-docker run -p 8000:8000 cohatch-api
+#### **Run the Docker Container**  
+```bash
+docker run -p 8000:8000 cohatch
 ```
 
-### 3. Stop & Remove Docker Containers  
-```sh
+#### **Stop & Remove Docker Containers**  
+```bash
 docker ps  # List running containers
-docker stop <container_id>
-docker rm <container_id>
+docker stop <container_id>  # Stop a container
+docker rm <container_id>  # Remove a container
+docker rmi cohatch  # Remove the Docker image
 ```
 
-## Debugging  
+## **Contributing**  
+1. Fork the repository.  
+2. Create a new branch (`git checkout -b feature-branch`).  
+3. Commit your changes (`git commit -m "Added new feature"`).  
+4. Push to the branch (`git push origin feature-branch`).  
+5. Create a Pull Request.  
 
-- If CSV data is missing, ensure `linkedin_profiles.csv` is in the correct location.  
-- Logs can be checked using:  
-  ```sh
-  docker logs <container_id>
-  ```
+## **License**  
+This project is licensed under the **MIT License**.
